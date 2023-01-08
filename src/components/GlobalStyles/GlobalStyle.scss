@@ -1,9 +1,10 @@
-@import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap');
+@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap");
 
-:root{
+:root {
   --primary: #fe2c55;
   --black: #000;
+  --white: #fff;
   --text-color: #333;
 
   // Default Layout
@@ -17,19 +18,21 @@
   box-sizing: border-box;
 }
 
-html{
+html {
   font-size: 62.5%;
 }
 
-body{
-  font-family: 'Roboto',sans-serif;
+body {
+  font-family: "Roboto", sans-serif;
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
-button, input, [tabindex] {
+button,
+input,
+[tabindex] {
   border: none;
   outline: none;
 }
