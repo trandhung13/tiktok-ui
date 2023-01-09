@@ -4,8 +4,12 @@ import Tippy from "@tippyjs/react/headless";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleXmark,
+  faEarthAmerica,
+  faEllipsisVertical,
+  faKeyboard,
   faMagnifyingGlass,
   faPlus,
+  faQuestionCircle,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,8 +18,25 @@ import styles from "./Header.module.scss";
 import images from "~/assets/images";
 import AccountItem from "~/components/AccountItem";
 import Button from "~/components/Button";
+import Menu from "~/components/Popper/Menu";
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faEarthAmerica} />,
+    title: "English",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faQuestionCircle} />,
+    title: "Feedback and help",
+    to: "/feedback",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: "Keyboard shortcuts",
+  },
+];
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -66,6 +87,12 @@ function Header() {
             Upload
           </Button>
           <Button primary>Log in</Button>
+
+          <Menu items={MENU_ITEMS}>
+            <button className={cx("more-btn")}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>
