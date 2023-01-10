@@ -6,7 +6,6 @@ import "tippy.js/dist/tippy.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleXmark,
-  faCloudUpload,
   faCoins,
   faEarthAmerica,
   faEllipsisVertical,
@@ -27,6 +26,8 @@ import AccountItem from "~/components/AccountItem";
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { MessageIcon, InboxIcon } from "~/components/Icons";
+import Image from "~/components/Image";
 
 const cx = classNames.bind(styles);
 
@@ -150,8 +151,18 @@ function Header() {
           {currentUser ? (
             <>
               <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                <Button upload leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                  Upload
+                </Button>
+              </Tippy>
+              <Tippy delay={[0, 200]} content="Message" placement="bottom">
                 <button className={cx("action-btn")}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
+                <button className={cx("action-btn")}>
+                  <InboxIcon />
                 </button>
               </Tippy>
             </>
@@ -168,7 +179,7 @@ function Header() {
             onChange={handleMenuChange}
           >
             {currentUser ? (
-              <img
+              <Image
                 className={cx("user-avatar")}
                 src="https://p77-sign-va.tiktokcdn.com/musically-maliva-obj/1657974440944646~c5_100x100.jpeg?x-expires=1673506800&x-signature=Cjmt9PG%2FErli5egDaZEHUxq5wPo%3D"
                 alt="ronaldo"
