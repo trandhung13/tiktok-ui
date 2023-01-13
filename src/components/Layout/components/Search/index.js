@@ -4,6 +4,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
+import * as searchServices from '~/apiServices/searchServices';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { ClearIcon } from '~/components/Icons';
@@ -22,21 +23,25 @@ function Search() {
     const debounced = useDebounce(searchValue, 500);
 
     useEffect(() => {
+        // Trim search value
         if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
         setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+        // Call API
+        const fetchApi = async () => {
+            setLoading(true);
+            const searchResult = await searchServices.search(debounced);
+
+            setSearchResult(searchResult);
+            setLoading(false);
+
+            return searchResult;
+        };
+
+        fetchApi();
     }, [debounced]);
 
     const handleClearSearch = () => {
@@ -47,13 +52,19 @@ function Search() {
     const handleShowResult = () => {
         setShowResult(false);
     };
+    const handleSearchValue = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(e.target.value);
+        }
+    };
 
     return (
         <HeadlessTippy
             interactive
             visible={showResult && searchResult.length > 0}
             render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                <div className={cx('search-results')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
 
@@ -71,9 +82,7 @@ function Search() {
                     placeholder="Search accounts and videos"
                     spellCheck={false}
                     value={searchValue}
-                    onChange={(e) => {
-                        setSearchValue(e.target.value);
-                    }}
+                    onChange={handleSearchValue}
                     onFocus={() => {
                         setShowResult(true);
                     }}
@@ -85,7 +94,12 @@ function Search() {
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button className={cx('search-btn')}>
+                <button
+                    className={cx('search-btn')}
+                    onMouseDown={(e) => {
+                        e.preventDefault();
+                    }}
+                >
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>

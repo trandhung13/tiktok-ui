@@ -1,75 +1,79 @@
 .wrapper {
-  --search-border-radius: 92px;
-  --search-height: 46px;
-  --search-top-spacer: 9px;
-  --search-button-width: 52px;
+    --search-border-radius: 92px;
+    --search-height: 46px;
+    --search-top-spacer: 9px;
+    --search-button-width: 52px;
 
-  height: var(--default-layout-header-height, 60px);
-  width: 100%;
-  box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
-  display: flex;
-  justify-content: center;
+    height: var(--default-layout-header-height, 60px);
+    width: 100%;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    display: flex;
+    justify-content: center;
 }
 
 .inner {
-  height: 100%;
-  padding: 0px var(--default-horizontal-spacer);
-  width: var(--default-layout-width);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    height: 100%;
+    padding: 0px var(--default-horizontal-spacer);
+    width: var(--default-layout-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-link {
+    display: flex;
 }
 
 // Actions
 
 .actions {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .more-btn {
-  font-size: 2rem;
-  padding: 4px 8px;
-  margin-left: 28px;
-  cursor: pointer;
-  background-color: transparent;
+    font-size: 2rem;
+    padding: 4px 8px;
+    margin-left: 28px;
+    cursor: pointer;
+    background-color: transparent;
 }
 
 .menu-items {
-  width: 224px;
+    width: 224px;
 }
 
 .action-btn {
-  position: relative;
-  display: flex;
-  align-items: center;
-  font-size: 2.2rem;
-  margin-left: 16px;
-  color: #161823;
-  background-color: transparent;
-  cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 2.2rem;
+    margin-left: 16px;
+    color: #161823;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .badge {
-  position: absolute;
-  top: -9px;
-  right: -9px;
-  padding: 0px 6px;
-  height: 2rem;
-  line-height: 2rem;
-  border-radius: 10px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--white);
-  font-family: "ProximaNova", sans-serif;
-  background-color: var(--primary);
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    padding: 0px 6px;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--white);
+    font-family: var(--font-family);
+    background-color: var(--primary);
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-left: 16px;
-  cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 16px;
+    cursor: pointer;
 }
